@@ -1,0 +1,32 @@
+<h1>Listing welcomes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Index</th>
+      <th>Name</th>
+      <th>Context</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @welcomes.each do |welcome| %>
+      <tr>
+        <td><%= welcome.index %></td>
+        <td><%= welcome.name %></td>
+        <td><%= welcome.context %></td>
+        <td><%= link_to 'Show', welcome %></td>
+        <td><%= link_to 'Edit', edit_welcome_path(welcome) %></td>
+        <td><%= link_to 'Destroy', welcome, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Comments', comment_path(welcome) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Welcome', new_welcome_path %>

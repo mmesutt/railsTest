@@ -1,0 +1,41 @@
+<h3>Welcome Name:<%= @welcome.name %></h3>   <br/>
+
+Posts <br/>
+<% @welcome.comments.each do |comment| %>
+  Comment:  <%= comment.comment_context %> <br/>
+<% end %>
+<br/>
+<br/>
+
+
+New Comment
+<%= form_for @comment do |f| %>
+    <%= f.hidden_field :welcome_id ,value: @comment.welcome_id%>
+        <div class="field">
+            <%=  f.label :Context %><br>
+            <%= f.text_field :comment_context %>
+        </div>
+    <%= f.submit "Gönder", id: "abc" %>
+<% end %>
+
+<script type="text/javascript">
+
+  $("#abc").click(function(){
+        var $form= $("#new_comment");
+      $.ajax({
+        url:'<%= welcomes_path %>',
+        type: "post",
+        data: $form.serialize()
+
+      });
+
+      if(!confirm("Are you sure?"))
+      {
+          return false;
+      }
+
+  });
+
+
+
+</script>
